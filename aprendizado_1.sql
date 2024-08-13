@@ -101,15 +101,3 @@ VALUES ('Eduardo', 'Netto', 'M', 24, 'Design Gráfico', 'Desenvolvimento Mobile'
 
 INSERT INTO Laboratorio1 (nome, sobrenome, sexo, idade, interesse, interesse2)
 VALUES ('', '', 'M', NULL, '', ''); /* Tabela modelo */
-
-/*CRIANDO SEQUENCIA */
-CREATE SEQUENCE sequencia1
-	INCREMENT 10
-	MINVALUE 1
-	MAXVALUE 999999
-	START 1
-	CACHE 1;
-
-/* TESTAR */ SELECT NEXTVAL('sequencia1');
-
-/* INSERIR VALOR */ INSERT INTO Laboratorio1 (id) VALUES (NEXTVAL('sequencia1'));
