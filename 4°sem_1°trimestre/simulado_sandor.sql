@@ -158,15 +158,17 @@ INSERT INTO salario
 (salario_atual,recebe_sequenc)
 VALUES
 -- exemplo (4000, 0), do que fazer depois 
-(4000, (SELECT recebe_sequenc FROM meus_contatos WHERE id_contato = 1)), -- fazer teste depois com a chave primaria (recebe_sequenc)
-(4500, (SELECT recebe_sequenc FROM meus_contatos WHERE id_contato = 2)),
-(3000, (SELECT recebe_sequenc FROM meus_contatos WHERE id_contato = 3));
-(2500, (SELECT recebe_sequenc FROM meus_contatos WHERE id_contato = 4)),
-(4800, (SELECT recebe_sequenc FROM meus_contatos WHERE id_contato = 5)),
-(3500, (SELECT recebe_sequenc FROM meus_contatos WHERE id_contato = 6)),
-(4900, (SELECT recebe_sequenc FROM meus_contatos WHERE id_contato = 7)),
-(2000, (SELECT recebe_sequenc FROM meus_contatos WHERE id_contato = 8)),
-(2000, (SELECT recebe_sequenc FROM meus_contatos WHERE id_contato = 9));
+(4000, 0),
+(4500, 13),
+(3000, 26),
+(2500, 39),
+(4800, 52),
+(3500, 65),
+(4900, 78),
+(2000, 91),
+(2000, 104);
+
+DROP TABLE salario
 
 ALTER TABLE meus_contatos DROP COLUMN salario_atual;
 
@@ -182,19 +184,59 @@ CREATE TABLE telefones (
 INSERT INTO telefones
 (numero,recebe_sequenc)
 VALUES
-('61998241005',0); -- terminar de adicionar de acordo com a prymari key
-
+('61999110005', 0),
+('62991231234', 13),
+('61998334567', 26),
+('62998445678', 39),
+('61999556789', 52),
+('62998767890', 65),
+('61999878901', 78),
+('62991189012', 91), 
+('61998291023', 104); 
 
 -- q 10 
+DROP TABLE interesses
+DROP TABLE meus_contatos_interesse
+SELECT * FROM interesses
+SELECT * FROM meus_contatos_interesse
 
 CREATE TABLE interesses (
    id_interesse SERIAL PRIMARY KEY,
    interesse VARCHAR(30)
 );
 
-CREATE TABLE meus_contatos_interesse
-(
-    recebe_sequenc INT REFERENCE meus_contatos(recebe_sequenc)
-    id_interesse INT REFERENCES interesses (id_interesse),
-    
-)
+CREATE TABLE meus_contatos_interesse (
+    recebe_sequenc INT REFERENCES meus_contatos(recebe_sequenc),
+    id_interesse INT REFERENCES interesses(id_interesse),
+    CONSTRAINT interesses_meus_contatos PRIMARY KEY (recebe_sequenc, id_interesse)
+);
+
+INSERT INTO interesses
+(interesse)
+VALUES
+('Teconologia'),
+('Viagens'),
+('Balada'),
+('Rpg'),
+('Videogame');
+
+INSERT INTO meus_contatos_interesse (recebe_sequenc, id_interesse)
+VALUES
+(0, 1),  -- Contato com ID 0 tem interesse em Tecnologia (id_interesse 1)
+(0, 2),  
+(13, 3), -- Contato com ID 13 tem interesse em Balada (id_interesse 3)
+(13, 4), 
+(26, 5), -- Contato com ID 26 tem interesse em Videogame (id_interesse 5)
+(26, 1),
+(39, 2),
+(39, 3),
+(52, 4),
+(52, 5),
+(65, 1),
+(65, 2),
+(78, 3),
+(78, 4),
+(91, 5),
+(91, 1),
+(104, 2),
+(104, 3);
