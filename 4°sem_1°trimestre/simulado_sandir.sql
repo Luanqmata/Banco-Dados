@@ -157,7 +157,7 @@ CREATE TABLE salario (
 INSERT INTO salario
 (salario_atual,recebe_sequenc)
 VALUES
--- exemplo (4000, 0), do que fazer depois 
+-- exemplo (4000, 0), do que fazer depois , um user pode ter mais de 1 telefone , ex do modo 2 de comunicação de tabela 1 pra varios , 1 pessoa pode ter varios teleefones
 (4000, 0),
 (4500, 13),
 (3000, 26),
