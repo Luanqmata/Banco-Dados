@@ -129,7 +129,7 @@ DROP SEQUENCE sequencia1_13; -- deletar uma sequenc
 
 ALTER TABLE meus_contatos ADD COLUMN recebe_sequenc INT;  -- adicionando uma coluna nova nos meus contatos 
 
-UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contato = 1;
+UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contato = 1;  -- adicionando a sequencial a mao para cada contato
 UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contato = 2;
 UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contato = 3;
 UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contato = 4;
@@ -139,19 +139,19 @@ UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contat
 UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contato = 8;
 UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contato = 9;
 
-ALTER TABLE meus_contatos DROP CONSTRAINT meus_contatos_pkey;
+ALTER TABLE meus_contatos DROP CONSTRAINT meus_contatos_pkey;   --- acabando com a chave composta que foi criada na linha 32
 
-ALTER TABLE meus_contatos ADD PRIMARY KEY (recebe_sequenc);
+ALTER TABLE meus_contatos ADD PRIMARY KEY (recebe_sequenc);   ---- adicionando a nova primary key 
 
-SELECT * FROM meus_contatos;
+SELECT * FROM meus_contatos;  --- mostrando tabela 
 
 -- q8 CRIAR OUTRA TABELA E COLOCAR UA CHAVE ESTRANGEIRA PARA ESCONDER DADOS SENSIVEIS 
-SELECT * FROM salario;
+SELECT * FROM salario;  -- mostrando tabela nova 
 
 CREATE TABLE salario (
-  id_salario SERIAL PRIMARY KEY,
-  salario_atual DECIMAL,
-  recebe_sequenc INT REFERENCES meus_contatos (recebe_sequenc)
+  id_salario SERIAL PRIMARY KEY,  -- adicionando PK ao id salario e um seria para ser crescente 
+  salario_atual DECIMAL,  -- atribui o valor decimal pro salario 
+  recebe_sequenc INT REFERENCES meus_contatos (recebe_sequenc)  -- faz referencia de um numero inteiro com a pk da tabela principal meus contatos 
 );
 
 INSERT INTO salario
