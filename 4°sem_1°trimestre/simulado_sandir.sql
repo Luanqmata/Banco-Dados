@@ -1,22 +1,22 @@
-SELECT * FROM meus_contatos;
-DROP TABLE meus_contatos;
+SELECT * FROM meus_contatos; -- monstrar tabela 
+DROP TABLE meus_contatos; -- apagar tabela
 
 CREATE TABLE meus_contatos (
-    id_contato SERIAL,
-    sobrenome VARCHAR(50),
+    id_contato SERIAL,  -- adcionando um serial 0 até 9999
+    sobrenome VARCHAR(50),  -- varchar para escrita
     primeiro_nome VARCHAR(50),
-    telefone NUMERIC(11),
-    email VARCHAR(100),
-    sexo CHAR(1),
-    data_nascimento DATE,
-    profissao VARCHAR(100),
+    telefone NUMERIC(11), -- estabelecendo numeric de 11 de tamanho
+    email VARCHAR(100), 
+    sexo CHAR(1), -- uma letra 
+    data_nascimento DATE, --tipo data 
+    profissao VARCHAR(100), 
     cidade VARCHAR(50),
     estado VARCHAR(50),
     estado_civil VARCHAR(20),
-    interesses TEXT,
+    interesses TEXT,  -- para adicionar
     procura TEXT
 );
-
+-- populando tabela
 INSERT INTO meus_contatos (sobrenome, primeiro_nome, telefone, email, sexo, data_nascimento, profissao, cidade, estado, estado_civil, interesses, procura)
 VALUES 
 ('Campos', 'Sandir', 6181335430, 'sandir.campos@iesgo.edu.br', 'M', '1980-03-12', 'Professor de BD, JS, CSS', 'Formosa', 'GOIAS', 'Casado', 'Tecnologia, Educação', 'Rodou man?!?!?!'),
@@ -29,13 +29,13 @@ VALUES
 ('Lima', 'Beatriz', 3197284651, 'beatriz.lima@iesgo.edu.br', 'F', '1992-05-14', 'Professora de Programação Mobile', 'Belo Horizonte', 'Minas Gerais', 'Solteira', 'Desenvolvimento de apps, UX/UI', 'Criar apps'),
 ('Almeida', 'Lucas', 6198321457, 'lucas.almeida@iesgo.edu.br', 'M', '1988-11-22', 'Professor de Cloud Computing', 'Brasília', 'DISTRITO FEDERAL', 'Casado', 'Cloud, DevOps, Infraestrutura', 'Implementar infraestruturas');
 
-ALTER TABLE meus_contatos ADD PRIMARY KEY (sobrenome,cidade);
+ALTER TABLE meus_contatos ADD PRIMARY KEY (sobrenome,cidade); -- comando que escolhe 1 chave composta 
 
 --questao 3 
 
-ALTER TABLE meus_contatos ADD COLUMN endereco varchar(30);
+ALTER TABLE meus_contatos ADD COLUMN endereco varchar(30);  -- adiciona uma coluna nova 
 
-UPDATE meus_contatos SET endereco= ' campos belos ' WHERE id_contato=9;
+UPDATE meus_contatos SET endereco= ' campos belos ' WHERE id_contato=9;  -- populando tabela // update atualizando - SET colocar em - tal id 
 UPDATE meus_contatos SET endereco = 'Arborland' WHERE id_contato = 1;
 UPDATE meus_contatos SET endereco = 'Lunária' WHERE id_contato = 2;
 UPDATE meus_contatos SET endereco = 'Terra do Sol' WHERE id_contato = 3;
@@ -45,18 +45,18 @@ UPDATE meus_contatos SET endereco = 'Monteluna' WHERE id_contato = 6;
 UPDATE meus_contatos SET endereco = 'Silvária' WHERE id_contato = 7;
 UPDATE meus_contatos SET endereco = 'Eldoria' WHERE id_contato = 8; -- ir mudando  o contato e adicionando o que vc quer 
 
-SELECT * FROM meus_contatos;
+SELECT * FROM meus_contatos; -- mostrando tabela
 
 -- q4 
 
-ALTER TABLE meus_contatos ADD COLUMN tipo_estado varchar(30);
+ALTER TABLE meus_contatos ADD COLUMN tipo_estado varchar(30); --adicionando outra coluna e povoando ela 
 
 
 UPDATE meus_contatos SET tipo_estado='rural' WHERE id_contato = 1;
 UPDATE meus_contatos SET tipo_estado='cidade' WHERE id_contato = 2;
 UPDATE meus_contatos SET tipo_estado='metrópole' WHERE id_contato = 3;
 UPDATE meus_contatos SET tipo_estado='rural' WHERE id_contato = 4;
-UPDATE meus_contatos SET tipo_estado='cidade' WHERE id_contato = 5;
+UPDATE meus_contatos SET tipo_estado='cidade' WHERE id_contato = 5;   -- atualizando meus contatos setando o estado no tipo de estado e no id tal
 UPDATE meus_contatos SET tipo_estado='metrópole' WHERE id_contato = 6;
 UPDATE meus_contatos SET tipo_estado='rural' WHERE id_contato = 7;
 UPDATE meus_contatos SET tipo_estado='cidade' WHERE id_contato = 8;
@@ -86,11 +86,11 @@ SELECT * FROM meus_contatos;
 
 -- q5 resposta sandir 
 
-ALTER TABLE meus_contatos ADD COLUMN salario_atual DECIMAL;
+ALTER TABLE meus_contatos ADD COLUMN salario_atual DECIMAL; -- adicionando duas tabelas novas do tipo decimal que é usado para valores $ cash
 ALTER TABLE meus_contatos ADD COLUMN salario_pretendido DECIMAL;
 
-ALTER TABLE meus_contatos ADD CONSTRAINT salario_atual_check CHECK (salario_atual < 5000);
-ALTER TABLE meus_contatos ADD CONSTRAINT salario_pretendido_check CHECK (salario_pretendido > 8000);
+ALTER TABLE meus_contatos ADD CONSTRAINT salario_atual_check CHECK (salario_atual < 5000);   -- alterando a tabela tal . adicionando uma contrando com o nome tal , adicionando a checkagem ou condição (salario atual menor que 5k)
+ALTER TABLE meus_contatos ADD CONSTRAINT salario_pretendido_check CHECK (salario_pretendido > 8000);   -- alterando a tabela tal . adicionando uma contrando com o nome tal , adicionando a checkagem ou condição (salario atual menor que 8k)
 
 UPDATE meus_contatos SET salario_atual = 4000 WHERE id_contato = 1;  -- menor que 5000
 UPDATE meus_contatos SET salario_atual = 4500 WHERE id_contato = 2;
@@ -112,22 +112,22 @@ UPDATE meus_contatos SET salario_pretendido = 8700 WHERE id_contato = 7;
 UPDATE meus_contatos SET salario_pretendido = 8001 WHERE id_contato = 8;
 UPDATE meus_contatos SET salario_pretendido = 8001 WHERE id_contato = 9;
 
-SELECT * FROM meus_contatos;
+SELECT * FROM meus_contatos; ---imprimindo tabela
 
 -- q6 
 
-CREATE SEQUENCE sequencia1_13
-	INCREMENT 13
-	MINVALUE 0
-	MAXVALUE 999999
-	START 0
-	CACHE 1;
+CREATE SEQUENCE sequencia1_13   --criando sequencial com nome 
+	INCREMENT 13  -- incrementa de 13 em 13 
+	MINVALUE 0  -- cmoeça com 0 
+	MAXVALUE 999999 -- valor maximo 
+	START 0 -- começar com 
+	CACHE 1; 
 	
-DROP SEQUENCE sequencia1_13;
+DROP SEQUENCE sequencia1_13; -- deletar uma sequenc
 
 -- q7 
 
-ALTER TABLE meus_contatos ADD COLUMN recebe_sequenc INT;
+ALTER TABLE meus_contatos ADD COLUMN recebe_sequenc INT;  -- adicionando uma coluna nova nos meus contatos 
 
 UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contato = 1;
 UPDATE meus_contatos SET recebe_sequenc=NEXTVAL('sequencia1_13') WHERE id_contato = 2;
