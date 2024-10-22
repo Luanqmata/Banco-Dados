@@ -35,7 +35,7 @@ CREATE TABLE super_herois (
 );
 
 INSERT INTO super_herois (ID, NOME, PODER, FRAQUEZA, INCIAIS, PAIS, ID_CIDADE) 
-VALUES (1, 'James Webb', 'Super visualização', 'Escuro', 1, 'Goiás', 1);
+VALUES (1, 'James Webb', 'Super visualização', 'Escuro', 1, 'Brazil', 1);
 
 ------------------------------------------------------------------------------------
 
