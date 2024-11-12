@@ -97,6 +97,37 @@ FROM empregado
 WHERE id_coordenador IS NOT NULL
 
 SELECT * FROM empregado
+	/*  INSERT DE PABLO  (nome da tabela dele ta funcionario)
+	
+SELECT id_empregado, nome_func, sobrenome_func, data_inicio
+FROM funcionario
+WHERE data_inicio <'01-01-2007'
+AND data_inicio >='01-01-2005';
+
+SELECT id_empregado, nome_func, sobrenome_func, data_inicio
+FROM funcionario
+WHERE data_inicio <'01-01-2005'
+AND data_inicio >='01-01-2000';
+
+SELECT id_empregado, nome_func, sobrenome_func, data_inicio
+FROM funcionario
+WHERE data_inicio <'01-01-2009'
+AND data_inicio >='01-01-2000';
+
+SELECT id_empregado, nome_func, sobrenome_func, data_inicio
+FROM funcionario
+WHERE data_inicio <='01-01-2007';
+
+
+SELECT id_empregado, nome_func, sobrenome_func, data_inicio
+FROM funcionario
+WHERE data_inicio ='01-01-2007';
+
+SELECT id_empregado, nome_func, sobrenome_func, data_inicio
+FROM funcionario
+WHERE data_inicio BETWEEN '01-01-2005' AND '31-12-2006';
+
+*/
 --------------------------------------------------------
 CREATE TABLE conta (
     id_conta SERIAL,
