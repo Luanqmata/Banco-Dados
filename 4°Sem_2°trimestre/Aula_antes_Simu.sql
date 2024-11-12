@@ -221,4 +221,54 @@ FROM ultima_tabela
 WHERE Conta_id IN (101,103)
   AND NOT (Tnx_cod_tipo='DBT' OR quantia>100)
 
---- Q3 
+--- Q3 CRIAR UMA TABELA E BUSCAR TODAS CONTAS ABERTAS EM 2002
+
+SELECT * FROM registro;
+DROP TABLE registro;
+
+CREATE TABLE registro (
+   id_pessoa SERIAL,
+   data_inscricao DATE,
+   nome_sobrenome VARCHAR(50)
+)
+
+INSERT INTO registro(data_inscricao,nome_sobrenome)
+VALUES
+('10/10/2005','ROBERTO JUSTOS'),
+('20/09/2002','lUAN CALAZANS'),
+('05/08/2002','SANDIR CAMPOS'),
+('01/01/2001','MICHAEL JACKSON'),
+('06/06/2002','BUCKET HEAD'),
+('20/05/2002','OLAVO DE CARVALHO'),
+('05/08/2008','JAMES WEB'),
+('20/02/2002','HILARY CLINTON')
+
+-- FILTRAR TODOS DE 2002 
+SELECT id_pessoa,data_inscricao,nome_sobrenome
+FROM registro
+WHERE EXTRACT(YEAR FROM data_inscricao) = 2002; -- OU PODERIA -- [   WHERE data_inscricao BETWEEN '2002-01-01' AND '2002-12-31'   ];
+
+-- Q4 
+SELECT * FROM clientes_nao_corporativos;
+
+CREATE TABLE clientes_nao_corporativos (
+   id_nao_corporativo SERIAL,
+   nome VARCHAR(30),
+   sobrenome VARCHAR(25)
+)
+
+INSERT INTO clientes_nao_corporativos(nome,sobrenome)
+VALUES
+('Luan','calazans'),
+('Bill','Gaets'),
+('Chalim','Bronx'),
+('Platao','Sarue'),
+('James','Waeb'),
+('Elon','Maske'),
+('Anonymous','laerte'),
+('MC','Daleste')
+
+-- FILTRAR TODOS COM A SEGUNDA LETRA SENDO A E LETRAS E DEPOIS DA LETRA A
+SELECT nome,sobrenome
+FROM clientes_nao_corporativos 
+WHERE sobrenome LIKE '_a%e%'
