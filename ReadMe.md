@@ -13,7 +13,7 @@
 ##                     (Imagem tabela Normalizada!! acima!!)
 ## Obs: Contem 1Pk, Desmembrar o endereço para que nao tenha compostos dentro de um campo só,e na segunda tab temos os telefones não multivalorados e fazendo referenciação a pk da primeira tab.
 ![image](https://github.com/user-attachments/assets/656df3eb-8849-47c6-859b-cd83b80b9615)
-# CODIGO da 1fn do exemplo:
+# CODIGO da 1°Fn do exemplo:
 ```sql
   DROP TABLE cliente;
   SELECT * FROM cliente;
@@ -81,6 +81,8 @@
   SELECT * FROM cliente;
   SELECT * FROM telefone_cliente;
 ```
+
+-----------------------------------------------------------------------------------------------------------------
 # Conceito 2Fn:
 ### Baseado no conceito de Dependencia funcional total (DFT)
 ### Cada Atributo que nao for chave tende ser total e funcionalmente dependentes da PK
