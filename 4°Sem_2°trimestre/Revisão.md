@@ -1,6 +1,8 @@
 #			Rev. Simu Sandir (RSS)
 
 # Para a tabela estar na 1° forma normal ela deve:
+![image](https://github.com/user-attachments/assets/656df3eb-8849-47c6-859b-cd83b80b9615)
+
 ### -somente possuir valores *ATOMICOS*
 ### -não ha grupos de atributos repetidos (há apenas um dado por coluna nas linhas)
 ### -existe uma chave primaria
