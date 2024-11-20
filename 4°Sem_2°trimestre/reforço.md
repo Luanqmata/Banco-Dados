@@ -14,6 +14,10 @@
 
 ---
 
+## Diferença entre `ALTER TABLE` e `UPDATE`
+- **Alter table**: comando para alterar estrutura da tabela.  
+- **UPDATE + SET**: comando para alterar tuplas da tabela.
+- 
 ## Exemplos em SQL
 
 
@@ -85,5 +89,9 @@ VALUES
 (1078, '11-09-2002'),
 (3045, '20-09-2002');
 
+-- adicionar colluna 
+ALTER TABLE pedidos ADD COLUMN coluna_nova VARCHAR(30);
+-- apagar coluna
+ALTER TABLE pedidos DROP COLUMN coluna_nova;
 
  ```
