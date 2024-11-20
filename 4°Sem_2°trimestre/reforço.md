@@ -17,7 +17,6 @@
 ## Diferença entre `ALTER TABLE` e `UPDATE`
 - **Alter table**: comando para alterar estrutura da tabela.  
 - **UPDATE + SET**: comando para alterar tuplas da tabela.
-- 
 ## Exemplos em SQL
 
 
@@ -93,5 +92,16 @@ VALUES
 ALTER TABLE pedidos ADD COLUMN coluna_nova VARCHAR(30);
 -- apagar coluna
 ALTER TABLE pedidos DROP COLUMN coluna_nova;
+--mudar nome  do campo 
+ALTER TABLE pedidos ADD COLUMN coluna_nova VARCHAR(20);
+ALTER TABLE pedidos RENAME COLUMN coluna_nova TO quantidade;
+
+-- alterar tipo de dado da coluna 
+ALTER TABLE pedidos ALTER COLUMN quantidade TYPE INT;
+
+--trataneto de erro usandi USING 
+ALTER TABLE pedidos ALTER COLUMN quantidade TYPE INT USING quantidade::integer; -- GPT
+ALTER TABLE pedidos ALTER COLUMN quantidade TYPE VARCHAR;
+
 
  ```
