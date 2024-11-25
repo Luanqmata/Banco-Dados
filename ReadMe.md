@@ -162,6 +162,8 @@ ALTER TABLE tbl_pecas DROP COLUMN tel_fornecedor
 SELECT * FROM tbl_pecas
 SELECT * FROM tbl_fornecedor
 ```
+![image](https://github.com/user-attachments/assets/15469110-696c-487d-92d0-ae868f80929c)
+![image](https://github.com/user-attachments/assets/19fb3bce-2fcf-4f8c-9beb-c12dacfd394d)
 
 ## Ou seja:
 ### Resumindo vc vai criar uma tabela com atributos principais e o atributos secundario vc vai colocar na outra tabela e fazer refenciação daquelas atributos secundarios que possuem um ID ao msm aID da tabela principal.
