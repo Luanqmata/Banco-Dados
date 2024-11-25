@@ -194,7 +194,7 @@ SELECT * FROM tbl_fornecedor
 ### com isso vc deve criar outra relação e lá vc coloca um Pk e os atributos que dependem dos não-chave 
 ### e na relação principal vc coloca uma FK para fazer relação com a PK dos atributo não-chave
 -----------------------------------------------------------------------------------------------------------------
-#Cod ex 3°Fn:
+# Cod ex 3°Fn:
 
 ```sql
 -----------------------------Tab não normalizada------------------------
