@@ -193,4 +193,63 @@ SELECT * FROM tbl_fornecedor
 ### Oque vc deve fazer é analisar a tabela e perceber se ela tem alguns atributos não chaves que não dependem da chave primaria 
 ### com isso vc deve criar outra relação e lá vc coloca um Pk e os atributos que dependem dos não-chave 
 ### e na relação principal vc coloca uma FK para fazer relação com a PK dos atributo não-chave
+-----------------------------------------------------------------------------------------------------------------
+#Cod ex 3°Fn:
 
+```sql
+-----------------------------Tab não normalizada------------------------
+SELECT * FROM tbl_venda
+DROP TABLE tbl_venda
+
+CREATE TABLE tbl_venda (
+    nota_fiscal INT,
+	cod_vendedor INT,
+	nome_vendendor VARCHAR(15),
+	cod_produto INT,
+	qtde_vendida INT,
+    PRIMARY KEY (nota_fiscal)
+);
+
+INSERT INTO tbl_venda
+VALUES
+(15326,002,'Leila',132,10),
+(15327,006,'Ana',153,12),
+(15328,002,'Leila',143,11),
+(15329,009,'Fábio',132,9),
+(15330,007,'Renato',153,12)
+
+---------------------------------- Criando a relação para atributos nao-chave -------------------------------------------
+
+SELECT * FROM tbl_vendedor
+DROP TABLE tbl_vendedor
+
+CREATE TABLE tbl_vendedor(
+    cod_vendedor INT,
+	nome_vendedor VARCHAR(30),
+	PRIMARY KEY (cod_vendedor)
+);
+
+INSERT INTO tbl_vendedor
+VALUES
+(002,'Leila'),
+(006,'Ana'),
+(007,'Renato'),
+(009,'Fabio')
+
+-- adicionando relacionamento de fk na tab principal para fazer relação com a pk da tabela secundaria
+ALTER TABLE tbl_venda
+ADD CONSTRAINT fk_vendedor_venda
+FOREIGN KEY (cod_vendedor)
+REFERENCES tbl_vendedor (cod_vendedor)
+-------------------------------- Modelando -------------------------------------
+ALTER TABLE tbl_venda DROP COLUMN nome_vendendor
+---------------------------------RESULTADO FINAL-----------------------------------------------
+SELECT * FROM tbl_venda
+SELECT * FROM tbl_vendedor
+```
+![image](https://github.com/user-attachments/assets/eb8e3dc7-f388-4592-a7d8-f819dd73baf4)
+![image](https://github.com/user-attachments/assets/b13845bc-ccc4-4330-bdb3-60f6484f09f4)
+
+-----------------------------------------------------------------------------------------------------------------
+# Girada de chave mental:
+![image](https://github.com/user-attachments/assets/1124a0e9-6f9d-4fef-b53b-9d8e10f820a4)
