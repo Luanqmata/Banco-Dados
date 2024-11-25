@@ -259,7 +259,7 @@ SELECT * FROM tbl_vendedor
 ![image](https://github.com/user-attachments/assets/1124a0e9-6f9d-4fef-b53b-9d8e10f820a4)
 
 -----------------------------------------------------------------------------------------------------------------
-# Ex codigo de tabela relação N -> N 
+# Ex codigo de tabela relação 1°Fn N -> N 
 ![image](https://github.com/user-attachments/assets/79bee558-6ee3-4488-92d2-ae8dd3faf411)
 
 ```sql
