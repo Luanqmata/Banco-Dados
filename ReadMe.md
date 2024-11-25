@@ -105,6 +105,7 @@
 ### o que vc deve fazer é analisar a tabela inteira desde nome a atributos , e os atributos que não fazem parte diretamente da chave primaria inteira (se for uma composta no caso)
 ### vc vai remover da tabela principal e criar outra tabela com chave primaria referenciando ao msm numero da chave que esta na primeira tabela.
 -----------------------------------------------------------------------------------------------------------------
+# Cod exemplo 2°Fn:
 ```sql
 -----------------------------Tabela não normalizada--------------------------------
 
