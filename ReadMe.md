@@ -257,3 +257,66 @@ SELECT * FROM tbl_vendedor
 -----------------------------------------------------------------------------------------------------------------
 # Girada de chave mental:
 ![image](https://github.com/user-attachments/assets/1124a0e9-6f9d-4fef-b53b-9d8e10f820a4)
+
+-----------------------------------------------------------------------------------------------------------------
+# Ex codigo de tabela relação N -> N 
+![image](https://github.com/user-attachments/assets/79bee558-6ee3-4488-92d2-ae8dd3faf411)
+
+```sql
+SELECT * FROM pessoa
+DROP TABLE pessoa
+
+CREATE TABLE pessoa (
+	id_pessoa SERIAL,
+	nome VARCHAR(50),
+	interesse TEXT,
+	PRIMARY KEY (id_pessoa)
+);
+
+INSERT INTO pessoa(nome,interesse)
+VALUES
+('luan','cybesec,f800'),
+('rafaela','playboy,dinheiro'),
+('luan','gs 450,tracer 900')
+
+--------------------- criar outra tab
+
+SELECT * FROM tb_interesse
+DROP TABLE tb_interesse
+
+CREATE TABLE tb_interesse (
+    id_interesse SERIAL PRIMARY KEY,
+	interesse TEXT
+);
+
+INSERT INTO tb_interesse (interesse)
+VALUES
+('cybersec'),
+('f800'),
+('play boy'),
+('dinheiro'),
+('gs450'),
+('tracer900')
+-----------------------------tab relacionamento
+SELECT * FROM tab_inte_pessoa
+DROP TABLE tab_inte_pessoa
+
+CREATE TABLE tab_inte_pessoa (
+	id_pessoa INT,
+	id_interesse INT,
+	PRIMARY KEY (id_pessoa,id_interesse),
+	FOREIGN KEY (id_pessoa) REFERENCES pessoa (id_pessoa),
+	FOREIGN KEY (id_interesse) REFERENCES tb_interesse (id_interesse)
+);
+
+INSERT INTO tab_inte_pessoa
+VALUES
+(1,1),
+(1,2),
+(2,3),
+(2,4),
+(3,5),
+(3,6)
+
+ALTER TABLE pessoa DROP COLUMN interesse
+```
