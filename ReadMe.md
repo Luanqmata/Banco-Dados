@@ -15,6 +15,8 @@
 ![image](https://github.com/user-attachments/assets/656df3eb-8849-47c6-859b-cd83b80b9615)
 # CODIGO da 1°Fn do exemplo:
 ```sql
+  -- https://www.youtube.com/watch?v=eRaAMNjCFYw
+  -----------------------------Tabela não normalizada--------------------------------
   DROP TABLE cliente;
   SELECT * FROM cliente;
   
@@ -107,6 +109,7 @@
 -----------------------------------------------------------------------------------------------------------------
 # Cod exemplo 2°Fn:
 ```sql
+-- https://www.youtube.com/watch?v=6ER9lWOk-cY
 -----------------------------Tabela não normalizada--------------------------------
 
 SELECT * FROM tbl_pecas
@@ -197,6 +200,7 @@ SELECT * FROM tbl_fornecedor
 # Cod ex 3°Fn:
 
 ```sql
+-- https://www.youtube.com/watch?v=usA8QKvEHWw
 -----------------------------Tab não normalizada------------------------
 SELECT * FROM tbl_venda
 DROP TABLE tbl_venda
