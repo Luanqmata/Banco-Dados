@@ -105,6 +105,64 @@
 ### o que vc deve fazer é analisar a tabela inteira desde nome a atributos , e os atributos que não fazem parte diretamente da chave primaria inteira (se for uma composta no caso)
 ### vc vai remover da tabela principal e criar outra tabela com chave primaria referenciando ao msm numero da chave que esta na primeira tabela.
 -----------------------------------------------------------------------------------------------------------------
+```sql
+-----------------------------Tabela não normalizada--------------------------------
+
+SELECT * FROM tbl_pecas
+DROP TABLE tbl_pecas
+
+CREATE TABLE tbl_pecas (
+    cod_peca INT,
+	cod_fornec INT,
+	local_fornecedor VARCHAR(50),
+	qnt_estoq INT,
+	tel_fornecedor NUMERIC(11),
+	qtde_Caixas INT,
+	primary key(cod_peca,cod_fornec)
+);
+
+INSERT INTO tbl_pecas
+VALUES
+(0009,121,'São Paulo',512,30302020,52),
+(0023,122,'Manaus',263,60607070,27),
+(0065,121,'São Paulo',196,30302020,20),
+(0071,123,'Porto Alegre',89,10121314,9),
+(0073,122,'Manaus',296,60607070,30)
+
+-------------------------------- separando dfp da primeira tab pra outra tab --------------------------------------
+
+SELECT * FROM tbl_fornecedor
+DROP TABLE tbl_fornecedor
+
+CREATE TABLE tbl_fornecedor(
+    cod_fornecedor INT,
+	local_fornec VARCHAR(50),
+	tel_fornec NUMERIC(11),
+	primary key(cod_fornecedor)
+);
+
+INSERT INTO tbl_fornecedor
+VALUES
+(121,'São Paulo',30302020),
+(122,'Manaus',60607070),
+(123,'Porto Alegre',10121314)
+
+----------------------------------- Modelando as tabelas ------------------------------------
+
+--adicionando fk na tabela peças no cod_fornecedor , e referenciando para a tbl_fornecedor no cod_fornecedor 
+ALTER TABLE tbl_pecas
+ADD CONSTRAINT fk_pecas_fornecedor
+FOREIGN KEY (cod_fornec)
+REFERENCES tbl_fornecedor (cod_fornecedor)
+
+ALTER TABLE tbl_pecas DROP COLUMN local_fornecedor
+ALTER TABLE tbl_pecas DROP COLUMN tel_fornecedor
+
+-------------------------------------- Saida final -----------------------------
+SELECT * FROM tbl_pecas
+SELECT * FROM tbl_fornecedor
+```
+
 ## Ou seja:
 ### Resumindo vc vai criar uma tabela com atributos principais e o atributos secundario vc vai colocar na outra tabela e fazer refenciação daquelas atributos secundarios que possuem um ID ao msm aID da tabela principal.
 
