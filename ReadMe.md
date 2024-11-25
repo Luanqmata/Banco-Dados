@@ -83,7 +83,7 @@
 ```
 
 -----------------------------------------------------------------------------------------------------------------
-# Conceito 2Fn:
+# Conceito 2°Fn:
 ### Baseado no conceito de Dependencia funcional total (DFT)
 ### Cada Atributo que nao for chave tende ser total e funcionalmente dependentes da PK
 ### Um atributo-chave é um atributo que é uma PK ou parte de uma PKC (Composta) .
@@ -168,4 +168,17 @@ SELECT * FROM tbl_fornecedor
 
 ## Ou seja:
 ### Resumindo vc vai criar uma tabela com atributos principais e o atributos secundario vc vai colocar na outra tabela e fazer refenciação daquelas atributos secundarios que possuem um ID ao msm aID da tabela principal.
-
+-----------------------------------------------------------------------------------------------------------------
+# Conceito 3°Fn
+### - Baseado no Conceito DFT dependencia transitiva
+### - Atributos não-chave na mesma tabela nao podem se relacionar com outro atributos não-chave
+### - Não deve haver dependencia Transitiva de um atributo não chave sobre a PK
+### - Se eu tenho um atributo comum que é não-chave que depende de outro atributo que é não-chave ,voce deve montar outra relação contendo esses novos atributos os dois ou mais.
+-----------------------------------------------------------------------------------------------------------------
+## Terceira forma normal:
+### - Deve estar na 2°Fn
+### - Não existe DFT
+### - A DFT em uma tabela é uma depencia funcional entre dois atributos não-chave
+-----------------------------------------------------------------------------------------------------------------
+# 3°Fn
+![image](https://github.com/user-attachments/assets/879cfcd9-2ce2-43ac-9843-47a633d0435b)
