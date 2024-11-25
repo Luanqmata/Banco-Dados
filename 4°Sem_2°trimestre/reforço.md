@@ -105,3 +105,67 @@ ALTER TABLE pedidos ALTER COLUMN quantidade TYPE VARCHAR;
 
 
  ```
+# Parte 2
+```sql
+
+----------------------------------------------------------------
+
+SELECT * FROM pai;
+DROP TABLE pai;
+
+CREATE TABLE pai (
+    id_col  SERIAL,
+    coluna1 VARCHAR(30),
+    coluna2 INT,
+    PRIMARY KEY (id_col)
+);
+
+INSERT INTO pai(coluna1,coluna2)
+VALUES
+('teste',345),
+('luan',22),
+('sandir',33)
+
+UPDATE pai SET coluna2 = 11 WHERE id_col = 1
+UPDATE pai SET coluna2 = 54 WHERE id_col = 2
+UPDATE pai SET coluna2 = 21 WHERE id_col = 3
+
+--------------------------------------------------------------------------
+
+SELECT * FROM filho;
+DROP TABLE filho;
+
+CREATE TABLE filho (
+    id_col2 SERIAL ,
+    coluna1 VARCHAR(50),
+    chave_estrangeira INTEGER REFERENCES pai (id_col),
+	PRIMARY KEY (id_col2)
+);
+
+INSERT INTO filho
+VALUES
+(1,'sanduiche de bacon',1)
+
+ALTER TABLE filho DROP CONSTRAINT filho_pkey  -- removendo pk dessa tabela 
+ALTER TABLE filho ADD CONSTRAINT filho_pkey PRIMARY KEY (id_col2) -- adicionando pkey 
+
+---------------------------------------------------------------
+
+SELECT * FROM outro_filho;
+DROP TABLE outro_filho;
+
+CREATE TABLE outro_filho(
+    id_col3 SERIAL,
+	coluna1 VARCHAR(30),
+	coluna2 INT
+);
+
+ALTER TABLE outro_filho
+ADD CONSTRAINT outro_filho_pkey PRIMARY KEY (id_col3)
+
+ALTER TABLE outro_filho 
+ADD CONSTRAINT OUTRO_FILHO_FK FOREIGN KEY (coluna2) REFERENCES pai (id_col);
+
+-----------------------------------------------------------------
+
+```
