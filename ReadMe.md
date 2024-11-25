@@ -1,4 +1,4 @@
-#			Rev. Simu Sandir (RSS) 4°Sem - 2°Tri
+#			Rev. Prova Sandir (RPS) 4°Sem - 2°Tri
 
 # Para a tabela estar na 1° forma normal ela deve:
 
