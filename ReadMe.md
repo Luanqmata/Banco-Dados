@@ -182,3 +182,14 @@ SELECT * FROM tbl_fornecedor
 -----------------------------------------------------------------------------------------------------------------
 # 3°Fn
 ![image](https://github.com/user-attachments/assets/879cfcd9-2ce2-43ac-9843-47a633d0435b)
+
+-----------------------------------------------------------------------------------------------------------------
+![image](https://github.com/user-attachments/assets/d75c8d25-afb6-463c-b882-94ca3a5ecf19)
+## (Imagem tabela não normalizada, acima!)
+![image](https://github.com/user-attachments/assets/0ce23166-da3a-44e0-8c2a-a5b3bd862473)
+## (Imagem tabela Normalizada!! acima!)
+
+### Oque vc deve fazer é analisar a tabela e perceber se ela tem alguns atributos não chaves que não dependem da chave primaria 
+### com isso vc deve criar outra relação e lá vc coloca um Pk e os atributos que dependem dos não-chave 
+### e na relação principal vc coloca uma FK para fazer relação com a PK dos atributo não-chave
+
