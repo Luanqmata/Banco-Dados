@@ -103,7 +103,7 @@ UNION
 SELECT c.nome AS nome_cliente, p.valor AS valor_pedido FROM clientes c 
 RIGHT JOIN pedidos p ON c.id = p.cliente_id;
 
-#----------------------- exercicio 5 ---------------------------
+----------------------- exercicio 5 ---------------------------
 
 # CREATE TABLE categorias ( id INT PRIMARY KEY , nome VARCHAR(255));
 
@@ -115,13 +115,13 @@ SELECT p.nome AS nome_produto, c.nome AS nome_categoria
 FROM produtos p
 CROSS JOIN categorias c;
 
-#------------------------------- exercicio 6 ------------------------ FALTA TERMINAR 
+------------------------------- exercicio 6 ------------------------ FALTA TERMINAR 
 
 CREATE TABLE clientes (id INT PRIMARY KEY,nome VARCHAR(255));
 CREATE TABLE pedidos ( id INT PRIMARY KEY,cliente_id INT, valor DECIMAL(10,2));
 
 
-#------------------------ EX 7 ---------------------- FALTA TERMINAR 
+------------------------ EX 7 ---------------------- FALTA TERMINAR 
 select c.nome as cliente,
 p.data_pedido,pr.nome as produto,ip.quantidade,ip.quantidade*pr.preco as preco_total
 from clientes c
@@ -129,16 +129,15 @@ join pedidos p on c.id=p.cliente_id
 group by c.nome
 order by total_comprar;
 
-#--------------------------- EX 1 PARTE 2  -------------------
+--------------------------- EX 1 PARTE 2  -------------------
 
--- Criação da tabela clientes_index
 CREATE TABLE clientes_index (
     id INT PRIMARY KEY,
     nome VARCHAR(255),
     email VARCHAR(255)
 );
 
--- Inserção de dados na tabela clientes_index
+
 INSERT INTO clientes_index (id, nome, email) 
 VALUES 
     (1, 'João', 'joao@example.com'),
@@ -149,8 +148,20 @@ CREATE INDEX idx_email ON clientes_index(email);
 
 SELECT * FROM clientes_index;
 
-SELECT * FROM clientes_index
-WHERE email = 'pedro@example.com';
+--------------------- ex 2 ------------------
 
-EXPLAIN SELECT * FROM clientes_index
-WHERE email = 'joao@example.com';
+CREATE TABLE pedidos_index (
+    id INT PRIMARY KEY,
+    cliente_id INT,
+    data_pedido DATE,
+    valor DECIMAL(10, 2)
+);
+
+INSERT INTO pedidos_index (id, cliente_id, data_pedido, valor)
+VALUES 
+    (1, 1, '2022-01-01', 200.00),
+    (2, 2, '2022-02-15', 350.50),
+    (3, 3, '2022-03-20', 500.75);
+
+
+CREATE INDEX idx_cliente_data_pedido ON pedidos_index(cliente_id, data_pedido);
