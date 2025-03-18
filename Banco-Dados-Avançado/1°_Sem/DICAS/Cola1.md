@@ -50,39 +50,38 @@ CREATE TABLE item_produto (
     FOREIGN KEY (id_produto) REFERENCES produto(id_produto)
 );
 
--- Inserindo dados na tabela de clientes
 INSERT INTO cliente1 (cliente, endereco, cidade, cep, uf, cpf) 
 VALUES
 ('João Silva', 'Rua A, 123', 'São Paulo', '01000000', 'SP', '11122233344'),
-	@@ -8,6 +56,7 @@ VALUES
+('Maria Souza', 'Rua B, 456', 'Rio de Janeiro', '22000000', 'RJ', '22233344455'),
+('Carlos Pereira', 'Rua C, 789', 'Belo Horizonte', '31000000', 'MG', '33344455566'),
 ('Ana Oliveira', 'Rua D, 101', 'Curitiba', '80000000', 'PR', '44455566677'),
 ('Pedro Santos', 'Rua E, 202', 'Porto Alegre', '90000000', 'RS', '55566677788');
 
--- Inserindo dados na tabela de vendedores
 INSERT INTO vendedor1 (vendedor, salario, comissao) 
 VALUES
 ('Carlos Mendes', 3000.00, 5.00),
-	@@ -16,6 +65,7 @@ VALUES
+('Fernanda Lima', 3500.00, 4.50),
+('Ricardo Alves', 2800.00, 6.00),
 ('Juliana Costa', 4000.00, 5.50),
 ('Roberto Farias', 3200.00, 4.00);
 
--- Inserindo dados na tabela de pedidos
 INSERT INTO pedido1 (id_cliente, id_vendedor, prazo_entrega) 
 VALUES
 (1, 1, '2025-03-01'),
-	@@ -24,6 +74,7 @@ VALUES
+(2, 2, '2025-03-05'),
+(3, 3, '2025-03-10'),
 (4, 4, '2025-03-15'),
 (5, 5, '2025-03-20');
 
--- Inserindo dados na tabela de produtos
 INSERT INTO produto (unidade, descricao, val_unit) 
 VALUES
 ('UN', 'Camiseta', 50.00),
-	@@ -32,41 +83,81 @@ VALUES
+('UN', 'Calça Jeans', 120.00),
+('UN', 'Tênis', 200.00),
 ('UN', 'Jaqueta', 300.00),
 ('UN', 'Boné', 40.00);
 
--- Inserindo dados na tabela de itens do pedido
 INSERT INTO item_produto (num_pedido, id_produto, quantidade) 
 VALUES
 (1, 1, 2),
