@@ -70,9 +70,9 @@ SELECT * FROM
 cliente c inner join produto p where c.cliente = 'Lucas Oliveira'; 
 -- A consulta acima não funcionará
 
-*/
+
 -- Crie uma consulta que mostre o nome do produto comprado por cada cliente usando junção interna qualificada
-/*
+
 
 
 SELECT                                                       -- SELECT == FRONT END
