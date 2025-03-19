@@ -139,7 +139,7 @@ NATURAL JOIN
     produto p;                           -- Junção natural entre item_pedido e produto
 ```
 ---------
-
+# -- Filtro para ver qual vendedor vendeu qual produto
 ---------
 ```sql
                     /*
