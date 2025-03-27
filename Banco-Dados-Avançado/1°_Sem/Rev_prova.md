@@ -245,7 +245,7 @@ JOIN
 Q7: Listar funcionários que ganham mais que a média salarial da empresa, com subquery e JOIN opcional.
 ----------------
 ## com AVG 
-![image](https://github.com/user-attachments/assets/8ad413b6-83ac-4789-9524-da9742886a65)
+![image](https://github.com/user-attachments/assets/897e8ea9-b11d-4659-b224-f830a2408ff6)
 ## COM JOIN 
 ![image](https://github.com/user-attachments/assets/897e8ea9-b11d-4659-b224-f830a2408ff6)
 
