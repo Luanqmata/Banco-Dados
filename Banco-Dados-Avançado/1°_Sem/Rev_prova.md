@@ -48,6 +48,7 @@ from
 ----------------
 Q2: Encontrar todos os clientes, incluindo os que não fizeram pedidos, usando LEFT JOIN.
 ----------------
+![image](https://github.com/user-attachments/assets/0278d2d5-6999-48e7-8317-2af6aaa095be)
 
 ```sql
 # Q 2 ------------------------------------------------
@@ -68,6 +69,7 @@ from
 ----------------
 Q3: Contar o número de pedidos de cada cliente e ordenar pelo maior número de pedidos.
 ----------------
+![image](https://github.com/user-attachments/assets/22399328-479f-4a0e-839b-7a4abcadd2c2)
 
 ```sql
 # Q 3 ----------------------------------------------------
@@ -93,6 +95,8 @@ ORDER BY
 ----------------
 Q4: Consultar transações de um cliente específico em um período e otimizar com índice.
 ----------------
+![image](https://github.com/user-attachments/assets/ac88a080-ee0d-43e7-845a-c8395ff82919)
+
 ```sql
 # Q 4 ----------------------------------------------------
 /* 
@@ -125,6 +129,7 @@ AND data_transacao BETWEEN '2024-03-20' AND '2024-03-25';  -- Filtra pelo perío
 ----------------
 Q5: Normalização de tabela (Separando cliente e produto em tabelas distintas).
 ----------------
+
 ```sql
 # Q 5 ------------------------- NORMALIZAÇÃO ---------------------------
 /* 
@@ -171,6 +176,8 @@ INSERT INTO Pedidos5 (id_pedido, id_cliente, id_produto) VALUES
 ----------------
 Q6: Consultar produtos, categorias e estoque, mostrando nome da categoria, nome do produto e quantidade em estoque.
 ----------------
+![image](https://github.com/user-attachments/assets/2e8fde29-3a77-4ba9-b62d-c9458fcca962)
+
 ```sql
 # Q 6 ----------------------------------------
 
@@ -235,6 +242,11 @@ JOIN
 ----------------
 Q7: Listar funcionários que ganham mais que a média salarial da empresa, com subquery e JOIN opcional.
 ----------------
+## com AVG 
+![image](https://github.com/user-attachments/assets/8ad413b6-83ac-4789-9524-da9742886a65)
+## COM JOIN 
+![image](https://github.com/user-attachments/assets/897e8ea9-b11d-4659-b224-f830a2408ff6)
+
 ```sql
 # Q 7 ----------------------------------------
 
