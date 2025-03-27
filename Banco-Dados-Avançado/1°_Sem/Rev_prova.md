@@ -1,3 +1,6 @@
+----------------
+Q1: Listar clientes que fizeram pelo menos um pedido, mostrando nome e data do pedido.
+----------------
 ```sql
 use banco_atividade;
 
@@ -27,6 +30,10 @@ INSERT INTO Pedidos (id_pedido, id_cliente, data_pedido) VALUES
 (104, 4, '2024-03-23'),
 (105, 5, '2024-03-24');
 ```
+----------------
+Q2: Encontrar todos os clientes, incluindo os que não fizeram pedidos, usando LEFT JOIN.
+----------------
+
 ```sql
 # Q 1 -----------------------------------------------
 -- Escreva uma consulta para listar todos os clientes que fizeram pelo menos um pedido, 
@@ -40,6 +47,10 @@ from
     inner join pedidos p 
     ON c.id_cliente = p.id_cliente;
 ```
+----------------
+Q3: Contar o número de pedidos de cada cliente e ordenar pelo maior número de pedidos.
+----------------
+
 ```sql
 # Q 2 ------------------------------------------------
 -- - LEFT JOIN para Encontrar Clientes Sem Pedidos
@@ -56,6 +67,10 @@ from
     left join pedidos p 
     ON c.id_cliente = p.id_cliente;
 ```
+----------------
+Q4: Consultar transações de um cliente específico em um período e otimizar com índice.
+----------------
+
 ```sql
 # Q 3 ----------------------------------------------------
 
@@ -77,6 +92,9 @@ GROUP BY
 ORDER BY 
     total_pedidos DESC; 						 -- Ordena do maior para o menor número de pedidos
 ```
+----------------
+Q5: Normalização de tabela (Separando cliente e produto em tabelas distintas).
+----------------
 ```sql
 # Q 4 ----------------------------------------------------
 /* 
@@ -106,6 +124,9 @@ FROM Transacoes
 WHERE id_cliente = 5  									   -- Filtra pelo cliente específico (substitua pelo ID desejado)
 AND data_transacao BETWEEN '2024-03-20' AND '2024-03-25';  -- Filtra pelo período desejado
 ```
+----------------
+Q6: Consultar produtos, categorias e estoque, mostrando nome da categoria, nome do produto e quantidade em estoque.
+----------------
 ```sql
 # Q 5 ------------------------- NORMALIZAÇÃO ---------------------------
 /* 
@@ -149,6 +170,9 @@ INSERT INTO Pedidos5 (id_pedido, id_cliente, id_produto) VALUES
 (102, 2, 2),
 (103, 3, 3);
 ```
+----------------
+Q7: Listar funcionários que ganham mais que a média salarial da empresa, com subquery e JOIN opcional.
+----------------
 ```sql
 # Q 6 ----------------------------------------
 
@@ -210,6 +234,9 @@ JOIN
 JOIN
     Estoque e ON p.id_produto = e.id_produto;
 ```
+----------------
+Q4: Consultar transações de um cliente específico em um período e otimizar com índice.
+----------------
 ```sql
 # Q 7 ----------------------------------------
 
