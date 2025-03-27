@@ -30,6 +30,7 @@ INSERT INTO Pedidos (id_pedido, id_cliente, data_pedido) VALUES
 ----------------
 Q1: Listar clientes que fizeram pelo menos um pedido, mostrando nome e data do pedido.
 ----------------
+![image](https://github.com/user-attachments/assets/842c3777-8c16-478a-9241-bddc05aacbe4)
 
 ```sql
 # Q 1 -----------------------------------------------
