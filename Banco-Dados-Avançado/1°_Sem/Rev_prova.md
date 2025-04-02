@@ -302,6 +302,7 @@ JOIN
 ----------------
 Q8: USANDO WHERE E LIKE e CRIANDO idx
 ----------------
+![image](https://github.com/user-attachments/assets/393a17a3-f051-4c78-9897-aeaa8fbcce10)
 ```sql
 /* 
 Escreva uma consulta para encontrar usuários cujo nome começa com "Ana".
@@ -393,3 +394,11 @@ Q10 : Calculando soma de vendas e calculand a media de vendas.
 	FROM Vendas
 	GROUP BY id_vendedor;
 ```
+
+## imagem da media :
+![image](https://github.com/user-attachments/assets/7192e44f-111e-4030-8766-bcf8c9f0ac65)
+
+## Imagem da soma : 
+![image](https://github.com/user-attachments/assets/1e4f170a-ab7e-48d3-848c-03d84279afec)
+
+
