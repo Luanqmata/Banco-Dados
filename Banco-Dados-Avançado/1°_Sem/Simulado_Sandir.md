@@ -40,16 +40,29 @@ INNER JOIN Clientes c
 ```sql
 -- questão 2
 
-select c.nome,p.id_pedido,p.data_pedido from  clientes c
-left join pedidos p on c.id_cliente=p.id_cliente;
+select
+    c.nome,
+    p.id_pedido,
+    p.data_pedido
+from  clientes c
+    left join pedidos p
+    on c.id_cliente=p.id_cliente;
+
 ```
 -----------------
 # Dando preferencia a tabela da direita e obtendo o mesmo resultado 
 -----------------
 ```sql
+
 -- questão 3
-select c.nome,p.id_pedido,p.data_pedido from  pedidos p
-right join  clientes c on c.id_cliente=p.id_cliente;
+select
+    c.nome,
+    p.id_pedido,
+    p.data_pedido
+from  pedidos p
+    right join  clientes c
+    on c.id_cliente=p.id_cliente;
+
 ```
 -----------------
 # Simulando FULL OUTER JOIN 
@@ -57,11 +70,22 @@ right join  clientes c on c.id_cliente=p.id_cliente;
 ```sql
 -- questão 4
 
-select c.nome,p.id_pedido,p.data_pedido from  clientes c
-left join pedidos p on c.id_cliente=p.id_cliente
+select
+    c.nome,
+    p.id_pedido,
+    p.data_pedido
+from  clientes c
+    left join pedidos p
+    on c.id_cliente=p.id_cliente
 union
-select c.nome,p.id_pedido,p.data_pedido from  clientes c
-right join  pedidos p on c.id_cliente=p.id_cliente;
+select
+    c.nome,
+    p.id_pedido,
+    p.data_pedido
+from  clientes c
+    right join  pedidos p
+    on c.id_cliente=p.id_cliente;
+
 ```
 
 -----------------
