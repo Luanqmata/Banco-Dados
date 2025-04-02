@@ -214,9 +214,12 @@ CREATE TABLE Produtos (
     FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria)
 );
 
-select c.nome as categoria,p.nome as produtos 
+select
+    c.nome as categoria,
+    p.nome as produtos 
 from categorias c
-left join produtos p on c.id_categoria=p.id_categoria;
+    left join produtos p
+    on c.id_categoria=p.id_categoria;
 ```
 -----------------
 # Escreva uma consulta SQL que utilize JOINs para listar todos os pedidos com os nomes dos clientes eos detalhes dos produtos adquiridos.
@@ -225,10 +228,18 @@ left join produtos p on c.id_categoria=p.id_categoria;
 
 -- questão 10
 
-select p.id_pedido,c.nome as nome_cliente,pr.produto as  nome_produto,pr.preco_uni from
-clientes2 c
-inner join  pedidos2 p on c.id_cliente=p.id_cliente
-join item_pedido it on it.id_pedido=p.id_pedido
-join produtos2 pr on pr.id_produto=it.id_produto;
+select
+    p.id_pedido,
+    c.nome as nome_cliente,
+    pr.produto as  nome_produto,
+    pr.preco_uni
+from
+    clientes2 c
+    inner join  pedidos2 p
+    on c.id_cliente=p.id_cliente
+join item_pedido it
+    on it.id_pedido=p.id_pedido
+join produtos2 pr
+    on pr.id_produto=it.id_produto;
 
 ``` 
