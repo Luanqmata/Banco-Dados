@@ -81,10 +81,12 @@ values
 
 select * from  clientes c
 cross join  produtos p ;
+```
 
 -----------------
 # Criando index's simples ,composto ,unico
 -----------------
+```sql
 -- questão 6
 CREATE TABLE Usuarios (
     id_usuario INT PRIMARY KEY,
