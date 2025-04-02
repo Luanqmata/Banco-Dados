@@ -168,6 +168,11 @@ CREATE TABLE item_pedido (
     FOREIGN KEY (id_produto) REFERENCES Produtos2(id_produto)
 );
 ```
+
+-----------------
+# Escreva uma consulta SQL que liste todas as categorias, incluindo aquelas que não possuem produtos associados.
+-----------------
+```sql
 -- questão 9
 
 drop table Produtos;
@@ -188,10 +193,18 @@ CREATE TABLE Produtos (
 select c.nome as categoria,p.nome as produtos 
 from categorias c
 left join produtos p on c.id_categoria=p.id_categoria;
+```
+-----------------
+# Escreva uma consulta SQL que utilize JOINs para listar todos os pedidos com os nomes dos clientes eos detalhes dos produtos adquiridos.
+-----------------
+```sql
 
 -- questão 10
+
 select p.id_pedido,c.nome as nome_cliente,pr.produto as  nome_produto,pr.preco_uni from
 clientes2 c
 inner join  pedidos2 p on c.id_cliente=p.id_cliente
 join item_pedido it on it.id_pedido=p.id_pedido
 join produtos2 pr on pr.id_produto=it.id_produto;
+
+``` 
