@@ -298,3 +298,98 @@ FROM
 JOIN 
     MediaSalarial m ON f.salario > m.media_salarial;
 ```
+
+----------------
+Q8: USANDO WHERE E LIKE e CRIANDO idx
+----------------
+```sql
+/* 
+Escreva uma consulta para encontrar usuários cujo nome começa com "Ana".
+Crie um índice apropriado para otimizar essa busca.
+Explique em quais situações esse índice não será eficiente.
+*/
+
+CREATE TABLE Usuarios (
+    id_usuario INT PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100) UNIQUE
+);
+
+INSERT INTO Usuarios (id_usuario, nome, email) VALUES 
+(5, 'Ana Paula', 'ana.paula@email.com'),
+(6, 'Ana Beatriz', 'ana.beatriz@email.com'),
+(7, 'Ana Clara', 'ana.clara@email.com');
+
+# Escreva uma consulta para encontrar usuários cujo nome começa com "Ana".
+SELECT * FROM Usuarios WHERE nome LIKE 'Ana%';
+
+CREATE INDEX idx_email_user on Usuarios(email);
+/*
+ O índice no email é útil para buscas exatas, mas perde eficiência em funções aplicadas na coluna, 
+ LIKE com % no início, baixa variação de dados e tabelas com muitas alterações. 
+*/
+```
+----------------
+Q9: Atualizando e apagando dados de uma tab de maneira segura.
+----------------
+```sql
+CREATE TABLE Pedidos9 (
+    id_pedido INT PRIMARY KEY,
+    id_cliente INT,
+    data_pedido DATE,
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
+);
+
+INSERT INTO Clientes (id_cliente, nome) VALUES
+(101, 'João Silva'),
+(102, 'Maria Oliveira'),
+(103, 'Carlos Santos'),
+(104, 'Ana Beatriz'),
+(105, 'Pedro Almeida');
+
+INSERT INTO Pedidos9 (id_pedido, id_cliente, data_pedido) VALUES 
+(6, 101, '2024-03-01'),
+(7, 102, '2024-03-05'),
+(8, 103, '2024-03-10'),
+(9, 104, '2024-03-15'),
+(10, 105, '2024-03-20');
+
+UPDATE Pedidos9  
+SET data_pedido = '2024-04-01' # atualizando 
+WHERE id_pedido = 6;
+
+SELECT * FROM Pedidos9;
+
+DELETE FROM Clientes WHERE id_cliente = 101;  # apagando
+
+SELECT * FROM Pedidos9 WHERE id_cliente = 101;
+```
+----------------
+Q10 : Calculando soma de vendas e calculand a media de vendas.
+----------------
+```sql
+	CREATE TABLE Vendas (
+	    id_venda INT PRIMARY KEY,
+	    id_vendedor INT,
+	    valor DECIMAL(10,2)
+	);
+	
+	INSERT INTO Vendas (id_venda, id_vendedor, valor) VALUES 
+	(1, 201, 1500.50),
+	(2, 202, 2500.00),
+	(3, 203, 3200.75),
+	(4, 201, 1800.30),
+	(5, 204, 2900.00);
+	
+	SELECT id_vendedor,
+		SUM(valor) AS total_vendas
+	FROM Vendas
+	GROUP BY id_vendedor;
+	
+	SELECT 
+	    id_vendedor, 
+	    SUM(valor) AS total_vendas,
+	    (SUM(valor) / (SELECT SUM(valor) FROM Vendas)) * 100 AS percentual_participacao
+	FROM Vendas
+	GROUP BY id_vendedor;
+```
