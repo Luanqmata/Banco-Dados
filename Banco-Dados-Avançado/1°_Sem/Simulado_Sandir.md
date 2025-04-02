@@ -112,8 +112,22 @@ Create index idx_email_nome_composto on usuarios(nome,email);
 -- questão 7
 
 Create index idx_data_pedido on pedidos(data_pedido);
-
 ```
+-----------------
+# A seguinte tabela está desnormalizada:
+
+    CREATE TABLE Pedidos (
+     id_pedido INT PRIMARY KEY,
+     nome_cliente VARCHAR(100),
+     email_cliente VARCHAR(100),
+     produto VARCHAR(100),
+     quantidade INT,
+     preco_unitario DECIMAL(10,2)
+    );
+    
+-----------------
+
+```sql
 -- questão 8
 
 CREATE TABLE Pedidos2 (
@@ -153,7 +167,7 @@ CREATE TABLE item_pedido (
     FOREIGN KEY (id_pedido) REFERENCES Pedidos2(id_pedido),
     FOREIGN KEY (id_produto) REFERENCES Produtos2(id_produto)
 );
-
+```
 -- questão 9
 
 drop table Produtos;
