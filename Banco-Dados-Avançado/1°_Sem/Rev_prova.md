@@ -92,7 +92,7 @@ ON
 GROUP BY 
     c.nome  									 -- Agrupa os resultados por cliente
 ORDER BY 
-    total_pedidos DESC; 						 -- Ordena do maior para o menor número de pedidos
+    total_pedidos DESC;    -- ASC crescente			 -- Ordena do maior para o menor número de pedidos
 ```
 ----------------
 Q4: Consultar transações de um cliente específico em um período e otimizar com índice.
