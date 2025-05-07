@@ -120,3 +120,16 @@ SELECT nome
 FROM cliente2
 WHERE id NOT IN (SELECT cliente_id FROM pedido2);
 
+-- ----------------------------------------------------------------
+
+-- COM EXIST 
+SELECT nome
+FROM cliente2 c
+WHERE EXISTS (SELECT 1 FROM pedido2 p WHERE p.cliente_id = c.id);
+
+-- COM NOT EXIST 
+SELECT nome
+FROM cliente2 c
+WHERE NOT EXISTS (SELECT 1 FROM pedido2 p WHERE p.cliente_id = c.id);
+
+-- ---------------------------------------------------------------
