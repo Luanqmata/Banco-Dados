@@ -8,7 +8,7 @@ CREATE TABLE clientes (
     email VARCHAR(255)
 );
 
-
+		
 
 DROP TABLE pedidos;
 
@@ -132,4 +132,16 @@ SELECT nome
 FROM cliente2 c
 WHERE NOT EXISTS (SELECT 1 FROM pedido2 p WHERE p.cliente_id = c.id);
 
--- ---------------------------------------------------------------
+-- ---------------------------------------------------
+DROP TABLE clientes_vip;
+
+CREATE TABLE clientes_vip (
+	id INT,
+    nome VARCHAR(50),
+    gasto_total DECIMAL (10,2)
+);
+
+INSERT INTO clientes_vip(id, nome, gasto_total)
+SELECT id, nome, total_gasto
+FROM cliente2
+WHERE total_gasto > (SELECT AVG(total_gasto) FROM cliente2);
