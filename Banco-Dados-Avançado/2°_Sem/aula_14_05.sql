@@ -160,4 +160,62 @@ UPDATE produtos
 SET preco = preco * 1.05
 WHERE preco < (SELECT AVG(preco) FROM produtos);
 
+-- produtos nunca vendiso ------------------------------
+	
+INSERT INTO produtos (id_produto, nome, preco) VALUES
+(6, 'Teclado Mecânico Razer BlackWidow', 499.00),
+(7, 'Monitor LG 24" Full HD', 899.00);
 
+
+ -- not in
+SELECT p.id_produto, p.nome, p.preco
+FROM produtos p
+WHERE p.id_produto NOT IN (
+    SELECT DISTINCT ip.id_produto
+    FROM item_pedido ip
+);
+
+-- not in sandir
+
+SELECT nome
+FROM produtos
+WHERE id_produto NOT IN (
+    SELECT DISTINCT id_produto 
+    FROM item_pedido
+);
+
+
+-- com NOT EXIST
+SELECT p.id_produto, p.nome, p.preco
+FROM produtos p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM item_pedido ip
+    WHERE ip.id_produto = p.id_produto
+);
+
+-- PEDIDOS COM A MEDIA DE VALOR DOS PEDIDOS DO MESMO CLIENTE
+-- CALCULAR A MEDIA DE TODOS OS PEDIDOS QUE UM CLIENTE SÓ EFZ 
+
+SELECT 
+    c.id_cliente,
+    c.nome,
+    -- c.estado,
+    AVG(total_pedido) AS media_pedido
+FROM 
+    clientes c
+JOIN 
+    (SELECT 
+        p.id_cliente,
+        p.id_pedido,
+        SUM(ip.quantidade * ip.preco_unitario) AS total_pedido
+     FROM 
+        pedidos p
+     JOIN 
+        item_pedido ip ON p.id_pedido = ip.id_pedido
+     GROUP BY 
+        p.id_cliente, p.id_pedido) AS totais
+ON 
+    c.id_cliente = totais.id_cliente
+GROUP BY 
+    c.id_cliente, c.nome, c.estado;
