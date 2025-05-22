@@ -120,3 +120,33 @@ CALL inserir_usuario('Maria');
 
 SELECT * FROM usuarios2;
 
+-- ----------- TAREFA SUICIDA
+
+CREATE TABLE valores(
+	valores INT
+);
+
+INSERT INTO valores   -- funcoes do propio sql
+VALUES (10),(30),(40),(50);
+
+SELECT SUM(valores) FROM valores; -- 1 
+
+SELECT AVG(valores) FROM valores; -- 2
+
+SELECT MAX(valores) FROM valores; -- 3
+
+SELECT MIN(valores) FROM valores; -- 4
+
+SELECT COUNT(*) FROM valores; -- 5
+
+-- -------------------
+
+SELECT LENGTH('CONTADOR DE ELTRAS'); -- 6
+
+SELECT LOWER('XAICA BAIXA00') ;-- 7
+
+SELECT UPPER('teste dp teste dp teste'); -- 8
+
+SELECT concat('teste' , 'juntar com outro');-- 9
+
+SELECT trim('T E E A A SDF FDG FDGDSA '); -- 10
