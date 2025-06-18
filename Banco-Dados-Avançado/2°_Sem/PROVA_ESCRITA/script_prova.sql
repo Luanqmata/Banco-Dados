@@ -113,8 +113,10 @@ INSERT INTO Pedidos_Desnormalizados (
 -- Estamos desativando temporariamente a verificação de chave estrangeira. 
 SET FOREIGN_KEY_CHECKS = 0;
 
+DROP TABLE Clientes;
+
 CREATE TABLE Clientes (
-    id_cliente INT PRIMARY KEY,
+    id_cliente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     telefone VARCHAR(20),
@@ -124,6 +126,8 @@ CREATE TABLE Clientes (
     cep VARCHAR(10)
 );
 
+DROP TABLE Produtos;
+
 CREATE TABLE Produtos (
     id_produto INT PRIMARY KEY,
     nome_produto VARCHAR(100) NOT NULL,
@@ -131,6 +135,8 @@ CREATE TABLE Produtos (
     preco_unitario DECIMAL(10,2) NOT NULL,
     categoria VARCHAR(50)
 );
+
+DROP TABLE Pedidos;
 
 CREATE TABLE Pedidos (
     id_pedido INT PRIMARY KEY,
@@ -141,6 +147,8 @@ CREATE TABLE Pedidos (
     data_pagamento DATE,
     FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+DROP TABLE Itens_Pedido;
 
 CREATE TABLE Itens_Pedido (
     id_item_pedido INT PRIMARY KEY AUTO_INCREMENT,
@@ -379,7 +387,8 @@ SELECT * FROM vw_clientes_gastos;
 
 -- PT5 -----------------------------
 
---  NAO COMPIEM APENAS USEM O EXEMPLO USEM =  CONCAT() , SUBSTRING() YEAR() , MONTH() , DAY() , DATEDIFF() , DATE_FORMAT() COUNT() BASEADO NOS EXEMPLOS ABAIXOS
+--  NAO COMPIEM APENAS se BASEEM NOS EXEMPLOS =  CONCAT() , SUBSTRING() YEAR() , MONTH() , DAY() ,
+--  DATEDIFF() , DATE_FORMAT() COUNT() BASEADO NOS EXEMPLOS ABAIXOS
 
 SELECT 
     id_cliente,
@@ -423,7 +432,81 @@ END;
 
 DELIMITER ;
 
-SELECT calcular_total_pedido(101);
+SELECT calcular_total_pedido(1);
 
 -- ---------------------------------------------------------
+DELIMITER //
 
+CREATE FUNCTION descricao_categoria_produto(categoria VARCHAR(50))
+RETURNS VARCHAR(100)
+DETERMINISTIC
+BEGIN
+    DECLARE descricao_amigavel VARCHAR(100);
+
+    IF categoria = 'Eletronicos' THEN
+        SET descricao_amigavel = 'Eletronicos em Geral';
+    ELSE
+        SET descricao_amigavel = categoria;
+    END IF;
+
+    RETURN descricao_amigavel;
+END;
+//
+
+DELIMITER ;
+
+SELECT descricao_categoria_produto('Eletrônicos');
+
+-- PT7 ---------------------------------------------------------------------
+-- INSERIR CLIENTE
+DELIMITER //
+
+CREATE PROCEDURE inserir_cliente (
+    IN p_nome VARCHAR(100),
+    IN p_email VARCHAR(100),
+    IN p_telefone VARCHAR(20),
+    IN p_endereco VARCHAR(255),
+    IN p_cidade VARCHAR(100),
+    IN p_estado VARCHAR(50),
+    IN p_cep VARCHAR(10)
+)
+BEGIN
+    INSERT INTO Clientes (nome, email, telefone, endereco, cidade, estado, cep)
+    VALUES (p_nome, p_email, p_telefone, p_endereco, p_cidade, p_estado, p_cep);
+END;
+//
+
+DELIMITER ;
+
+-- USANDO PROCIDURE
+CALL inserir_cliente( 
+    'João da Silva',
+    'joao.sila@email.com',
+    '62 91234-5678',
+    'Rua das Palmeiras, 123',
+    'Goiânia',
+    'GO',
+    '74000-000'
+);
+
+
+-- Uma procedure para atualizar o status de um pedido
+DELIMITER //
+
+CREATE PROCEDURE atualizar_status_pedido (
+    IN p_id_pedido INT,
+    IN p_novo_status VARCHAR(50)
+)
+BEGIN
+    UPDATE Pedidos
+    SET status_pedido = p_novo_status
+    WHERE id_pedido = p_id_pedido;
+END;
+//
+
+DELIMITER ;
+
+CALL atualizar_status_pedido( 
+    1,
+    'Concluído'
+);
