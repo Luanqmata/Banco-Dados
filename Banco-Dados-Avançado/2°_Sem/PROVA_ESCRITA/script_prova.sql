@@ -273,7 +273,15 @@ SELECT
 FROM Produtos pr
 LEFT JOIN Itens_Pedido ip ON pr.id_produto = ip.id_produto;
 
--- self join nao sei
+-- self join (join comum)
+SELECT
+    c.id_cliente,
+    c.nome AS nome_cliente,
+    COUNT(p.id_pedido) AS total_pedidos
+FROM Clientes c
+JOIN Pedidos p ON c.id_cliente = p.id_cliente
+GROUP BY c.id_cliente, c.nome
+HAVING COUNT(p.id_pedido) > 1;
 
 -- Liste todos os pedidos e seus itens, incluindo os detalhes do produto e do cliente
 
