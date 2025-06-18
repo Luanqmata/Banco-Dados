@@ -194,6 +194,7 @@ SELECT
 FROM Pedidos_Desnormalizados;
 
 SET FOREIGN_KEY_CHECKS = 1;
+-- DESTA PARTE PARA CIMA DIREITOS AUTORAIS DE PABLO LOPES: ( link do git mas ele nao tem git )
 
 -- PT2 ---------------
 -- todos os pedidos com os detalhes do cliente que o realizou:
@@ -267,6 +268,7 @@ LEFT JOIN Itens_Pedido ip ON pr.id_produto = ip.id_produto;
 -- self join nao sei
 
 -- Liste todos os pedidos e seus itens, incluindo os detalhes do produto e do cliente
+
 SELECT 
     p.id_pedido,
     p.data_pedido,
@@ -298,4 +300,130 @@ JOIN Clientes c ON p.id_cliente = c.id_cliente
 JOIN Itens_Pedido i ON p.id_pedido = i.id_pedido
 JOIN Produtos pr ON i.id_produto = pr.id_produto;
 
--- 
+-- pt3 --------------------------
+
+CREATE INDEX idx_email_cliente ON Clientes(email);
+CREATE INDEX idx_nome_produto ON Produtos(nome_produto);
+
+CREATE INDEX idx_pedidos_id_cliente ON Pedidos(id_cliente);
+CREATE INDEX idx_itens_pedido_id_pedido ON Itens_Pedido(id_pedido);
+CREATE INDEX idx_itens_pedido_id_produto ON Itens_Pedido(id_produto);
+
+CREATE INDEX idx_data_pedido ON Pedidos(data_pedido);
+
+-- pt4 -----------------------------------------
+
+CREATE VIEW vw_detalhes_pedidos AS
+SELECT
+    p.id_pedido,
+    p.data_pedido,
+    p.status_pedido,
+    p.metodo_pagamento,
+    p.data_pagamento,
+    
+    c.id_cliente,
+    c.nome AS nome_cliente,
+    c.email,
+    c.telefone,
+    c.endereco,
+    c.cidade,
+    c.estado,
+    c.cep,
+
+    i.id_item_pedido,
+    i.quantidade,
+    i.total_item,
+
+    pr.id_produto,
+    pr.nome_produto,
+    pr.descricao,
+    pr.preco_unitario,
+    pr.categoria
+
+FROM Pedidos p
+JOIN Clientes c ON p.id_cliente = c.id_cliente
+JOIN Itens_Pedido i ON p.id_pedido = i.id_pedido
+JOIN Produtos pr ON i.id_produto = pr.id_produto;
+
+SELECT * FROM vw_detalhes_pedidos;
+
+-- -------------------------
+
+CREATE VIEW vw_vendas_por_categoria AS
+SELECT
+    pr.categoria,
+    SUM(i.total_item) AS total_vendas
+FROM Pedidos p
+JOIN Itens_Pedido i ON p.id_pedido = i.id_pedido
+JOIN Produtos pr ON i.id_produto = pr.id_produto
+WHERE p.status_pedido = 'Concluído'
+GROUP BY pr.categoria;
+
+SELECT * FROM vw_vendas_por_categoria;
+
+-- --------------------------
+
+CREATE VIEW vw_clientes_gastos AS
+SELECT
+    c.id_cliente,
+    c.nome,
+    c.email,
+    SUM(i.total_item) AS total_gasto
+FROM Clientes c
+JOIN Pedidos p ON c.id_cliente = p.id_cliente
+JOIN Itens_Pedido i ON p.id_pedido = i.id_pedido
+WHERE p.status_pedido = 'Concluído'
+GROUP BY c.id_cliente, c.nome, c.email;
+
+SELECT * FROM vw_clientes_gastos;
+
+-- PT5 -----------------------------
+
+--  NAO COMPIEM APENAS USEM O EXEMPLO USEM =  CONCAT() , SUBSTRING() YEAR() , MONTH() , DAY() , DATEDIFF() , DATE_FORMAT() COUNT() BASEADO NOS EXEMPLOS ABAIXOS
+
+SELECT 
+    id_cliente,
+    UPPER(nome) AS nome_maiusculo
+FROM Clientes;
+
+SELECT 
+    id_cliente,
+    LOWER(email) AS email_minusculo
+FROM Clientes;
+
+SELECT 
+    AVG(preco_unitario) AS preco_medio_produtos
+FROM Produtos;
+
+SELECT 
+    SUM(total_item) AS total_vendido
+FROM Itens_Pedido;
+
+SELECT 
+    COUNT(*) AS total_pedidos
+FROM Pedidos;
+
+-- pt6 ---------------------------------------
+DELIMITER //
+
+CREATE FUNCTION calcular_total_pedido(pedido_id INT)
+RETURNS DECIMAL(10,2)
+DETERMINISTIC
+BEGIN
+    DECLARE total DECIMAL(10,2);
+
+    SELECT SUM(total_item)
+    INTO total
+    FROM Itens_Pedido
+    WHERE id_pedido = pedido_id;
+
+    RETURN IFNULL(total, 0.00);
+END;
+//
+
+DELIMITER ;
+
+SELECT calcular_total_pedido(101);
+
+-- ---------------------------------------------------------
+
