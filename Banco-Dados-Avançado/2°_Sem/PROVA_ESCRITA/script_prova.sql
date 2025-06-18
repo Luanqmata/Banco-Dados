@@ -270,8 +270,9 @@ SELECT
     ip.id_pedido,
     ip.quantidade,
     ip.total_item
-FROM Produtos pr
-LEFT JOIN Itens_Pedido ip ON pr.id_produto = ip.id_produto;
+FROM Itens_Pedido ip
+RIGHT JOIN Produtos pr ON pr.id_produto = ip.id_produto;
+
 
 -- self join (join comum)
 SELECT
